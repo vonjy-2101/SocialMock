@@ -1,11 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_api_clean_architecture/domain/entities/comment_entity.dart';
 import 'package:flutter_api_clean_architecture/domain/entities/post_entity.dart';
+import 'package:flutter_api_clean_architecture/domain/repositories/comment_repository.dart';
 import 'package:flutter_api_clean_architecture/domain/repositories/post_repository.dart';
 
 class PostProvider extends ChangeNotifier {
 
     final PostRepository _postRepository;
-    PostProvider(this._postRepository);
+    final CommentRepository _commentRepository;
+
+    PostProvider(this._postRepository,this._commentRepository);
 
     bool _isLoading = false;
     List<PostEntity> _posts = [];
@@ -14,20 +18,24 @@ class PostProvider extends ChangeNotifier {
     bool get isLoading => _isLoading;
     List<PostEntity> get posts => _posts;
 
+
     Future<void> fetchAllPosts() async
     {
         _isLoading = true;
         notifyListeners();
 
         try{
-            _isLoading = false;
             _posts = await _postRepository.getPost();
-            _error = null;
-            notifyListeners();
+            await Future.forEach(_posts, (post) async {
+                var comments = await _commentRepository.getCommentByPost(post.id);
+                post.setComments(comments);
+            });
+            _error = null;   
         }catch(e)
         {
-            _isLoading = false;
             _error = e.toString();
+        }finally{
+            _isLoading = false;
             notifyListeners();
         }
     }

@@ -7,11 +7,11 @@ class PostApiService {
 
     PostApiService(this._dio);
 
-    Future<List<PostEntity>> fetchAllPost() async
+    Future<List<PostEntity>> fetchAllPost({int startIndex = 1}) async
     {
         try{
 
-            final response = await _dio.get('/posts');
+            final response = await _dio.get('/posts?_start=$startIndex&_limit=10');
             return (response.data as List).map((item) => PostEntity.fromJson(item)).toList();
 
         }on DioException catch (e)

@@ -10,7 +10,7 @@ void main() {
     runApp(
         MultiProvider(
             providers: [
-                ChangeNotifierProvider(create: (_) => PostProvider(AppModules.postRepository),),
+                ChangeNotifierProvider(create: (_) => PostProvider(AppModules.postRepository,AppModules.commentRepositoryImpl),),
             ],
             child: MyApp(),
         ),

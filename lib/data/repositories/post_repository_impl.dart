@@ -9,8 +9,8 @@ class PostRepositoryImpl extends PostRepository{
 
 
     @override
-    Future<List<PostEntity>> getPost() async{
-        return await _postApiService.fetchAllPost();
+    Future<List<PostEntity>> getPost({int startIndex = 1}) async{
+        return await _postApiService.fetchAllPost(startIndex: startIndex);
     }
 
     @override

@@ -1,5 +1,7 @@
 import 'package:dio/dio.dart';
+import 'package:flutter_api_clean_architecture/data/datasources/comment_api_service.dart';
 import 'package:flutter_api_clean_architecture/data/datasources/post_api_service.dart';
+import 'package:flutter_api_clean_architecture/data/repositories/comment_repository_impl.dart';
 import 'package:flutter_api_clean_architecture/data/repositories/post_repository_impl.dart';
 
 class AppModules {
@@ -7,6 +9,8 @@ class AppModules {
     static late Dio _dio;
     static late PostApiService _postApi;
     static late PostRepositoryImpl postRepository;
+    static late CommentApiService _commentApiService;
+    static late CommentRepositoryImpl commentRepositoryImpl;
 
     static void setup()
     {
@@ -34,6 +38,10 @@ class AppModules {
         //service for post
         _postApi = PostApiService(_dio);
         postRepository = PostRepositoryImpl(_postApi);
+
+        //service for comment
+        _commentApiService = CommentApiService(_dio);
+        commentRepositoryImpl = CommentRepositoryImpl(_commentApiService);
 
     }
 
