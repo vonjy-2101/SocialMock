@@ -10,7 +10,11 @@ void main() {
     runApp(
         MultiProvider(
             providers: [
-                ChangeNotifierProvider(create: (_) => PostProvider(AppModules.postRepository,AppModules.commentRepositoryImpl),),
+                ChangeNotifierProvider(create: (_) => PostProvider(
+                    AppModules.postRepository,
+                    AppModules.commentRepositoryImpl,
+                    AppModules.userRepositoryImpl),
+                ),
             ],
             child: MyApp(),
         ),
@@ -24,7 +28,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        title: 'Bibliothèque',
+        title: 'SocialMock',
         theme: ThemeData(
             colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         ),

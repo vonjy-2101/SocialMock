@@ -26,7 +26,7 @@ class HomeState extends State<Home>
 
         return Scaffold(
             body: SafeArea(
-                child: Container(
+                child: SizedBox(
                     width: MediaQuery.sizeOf(context).width,
                     height: MediaQuery.sizeOf(context).height,
                     child : postProvider.isLoading
@@ -59,8 +59,8 @@ class PostList extends StatelessWidget
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                                 Text(
-                                    "Static User",
-                                    style: TextStyle(fontWeight: FontWeight.bold),
+                                    "${post.userPost?.username} ${post.userPost?.name}",
+                                    style: TextStyle(fontWeight: FontWeight.bold,fontSize: 22,color: Colors.brown),
                                 ),
                                 SizedBox(height: 5),
                                 Text(
