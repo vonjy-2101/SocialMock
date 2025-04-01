@@ -43,7 +43,7 @@
 - **Responsabilité** : Gestion de l'UI et de l'état
 - **Composants** :
   - `PostProvider` (Gestion d'état avec Provider(Post))
-  - Écrans (`Home`)
+  - Écrans (`PostScreen`,`CommentScreen`)
 
 ## 3. Gestion des Dépendances
 
