@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_api_clean_architecture/core/di/app_modules.dart';
 import 'package:flutter_api_clean_architecture/presentation/providers/post_provider.dart';
-import 'package:flutter_api_clean_architecture/presentation/screens/home.dart';
+import 'package:flutter_api_clean_architecture/presentation/screens/post_screen.dart';
 import 'package:provider/provider.dart';
 
 void main() {
@@ -32,7 +32,7 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
             colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         ),
-        home: Home(),
+        home: PostScreen(),
     );
   }
 }
