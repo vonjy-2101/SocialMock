@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_api_clean_architecture/domain/entities/post_entity.dart';
+import 'package:flutter_api_clean_architecture/presentation/screens/form_comment_screen.dart';
 
 class CommentScreen extends StatefulWidget{
     PostEntity post;
@@ -40,9 +41,9 @@ class CommentScreenState extends State<CommentScreen>
                                 padding: const EdgeInsets.symmetric(vertical: 4),
                                 child: ListTile(
                                     leading: CircleAvatar(child: Icon(Icons.person)),
-                                    title: Text(comment.email!,
+                                    title: Text(comment.email,
                                         style: TextStyle(fontWeight: FontWeight.bold)),
-                                    subtitle: Text(comment.body!),
+                                    subtitle: Text(comment.body),
                                 ),
                                 )),
                             Divider(),
@@ -50,7 +51,9 @@ class CommentScreenState extends State<CommentScreen>
                             // Button comment
                             Center(
                                 child: ElevatedButton(
-                                    onPressed: () {},
+                                    onPressed: () {
+                                        Navigator.push(context, MaterialPageRoute(builder: (context) => FormCommentScreen(post: widget.post,)));
+                                    },
                                     child: Text("Commenter"),
                                 ),
                             ),
